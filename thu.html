@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</title>
+    
+    <!-- External Libraries & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 🌸 Màn hình chờ lung linh khi web loading / mạng chậm -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="heart-pulse-loader">💖</div>
+            <div class="preloader-spinner"></div>
+            <p class="preloader-text">Đang chuẩn bị món quà yêu thương... ✨</p>
+        </div>
+    </div>
+
+    <!-- 📡 Banner thông báo khi mất kết nối mạng -->
+    <div id="networkToast" class="network-toast">
+        <i class="fa-solid fa-wifi" id="networkIcon"></i>
+        <span id="networkMsg">Bạn đang mất kết nối mạng. Hãy bật lại WiFi/4G để tải nhạc và thiệp mượt mà nhé! 💕</span>
+    </div>
+
+    <!-- 🎵 Nút điều khiển âm nhạc góc phải trên cùng -->
+    <button class="music-control-btn" id="musicToggleBtn" title="Bật/Tắt âm nhạc">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- ✨ Trái tim SVG chữ chạy 20/10 -->
+    <svg id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148" xml:space="preserve">
+        <defs>
+            <filter id="f" filterUnits="userSpaceOnUse" x="-120" y="-30" width="120%" height="120%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"></feGaussianBlur>
+                <feOffset in="blur" dx="3" dy="5" result="shadow"></feOffset>
+                <feFlood flood-color="rgba(3,0,0,1)" result="color" />
+                <feComposite in="color" in2="shadow" operator="in" />
+                <feComposite in="SourceGraphic" />
+            </filter>
+            <path id="shape" d="M0, 21.054 
+       C0, 21.054 24.618, -15.165 60.750, 8.554 
+       C93.249, 29.888 57.749, 96.888 0, 117.388
+       C-57.749, 96.888  -93.249, 29.888 -60.750, 8.554
+       C-24.618, -15.165  -0, 21.054 -0, 21.054z" />
+            <path id="partialPath" />
+        </defs>
+        <text dy="-2">
+            <textPath style="font-family: 'Dancing Script', cursive;" xlink:href="#partialPath" startOffset="12">
+                 Chúc Mừng Ngày 
+                💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗 Phụ 
+                Nữ Việt Nam 20/10!
+            </textPath>
+        </text>
+        <use id="useThePath" xlink:href="#partialPath" stroke="white" stroke-width=".5" stroke-opacity=".5" fill="none"
+            style="display:none;" />
+    </svg>
+
+    <!-- 🏰 Phong bì thư chính -->
+    <div id="castle">
+        <div class="letter">
+            <div class="valentines" id="valentineEnvelope" title="Chạm để mở lá thư">
+                <div class="envelope"></div>
+                <div class="front"></div>
+                <div class="card">
+                    <div class="text">Happy</br> Women's</br> Day!</div>
+                    <div class="heart"></div>
+                </div>
+                <div class="hearts">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                    <div class="four"></div>
+                    <div class="five"></div>
+                </div>
+            </div>
+            <div class="shadow"></div>
+            <!-- Dòng chữ hướng dẫn chạm mở -->
+            <div class="hint-tap-wrap" id="hintBadge" title="Chạm để mở thư">
+                <span class="hint-text-calligraphy">👆 Chạm vào phong bì để mở thư ✨</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💌 Modal Bức thư lời chúc 20/10 -->
+    <div class="wrapperLetterForm" id="letterModalOverlay">
+        <div class="boxLetter">
+            <div class="formLetter">
+                <!-- Nút tắt lá thư nổi bật ngay góc trên thiệp -->
+                <div class="close-card-btn" id="closeLetterBtn" title="Đóng lá thư">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+
+                <div class="heartLetter">
+                    <div class="heartLetterItem"></div>
+                </div>
+                <div class="heartLetter">
+                    <div class="heartLetterItem"></div>
+                </div>
+                <div class="wrapperLetter">
+                    <div class="giftbox">
+                        <div class="img">
+                            <img src="./image/2.gif" alt="bunny gift">
+                        </div>
+                    </div>
+                    <div class="textLetter">
+                        <h2></h2>
+                        <p class="contentLetter"></p>
+                        <div class="heartAnimation">
+                            <img src="./image/heartAnimation.gif" alt="heart animation">
+                        </div>
+                    </div>
+                    <div class="mewmew1"></div>
+                    <div class="mewmew2">
+                        <img src="./image/1.gif" alt="cute cat">
+                    </div>
+                    <div class="signature"><br>Love you so much, Mom <br>by Thành</div>
+                </div>
+            </div>
+            <div class="before"></div>
+        </div>
+    </div>
+
+    <!-- 🎵 Audio nền -->
+    <audio id="bgm" src="./mucsic/music.mp3" preload="auto" loop></audio>
+
+    <!-- Custom Main Script -->
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
